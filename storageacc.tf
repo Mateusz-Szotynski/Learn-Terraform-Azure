@@ -1,4 +1,32 @@
 
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.20.0"
+    }
+  }
+
+  required_version = ">= 1.1.0"
+}
+
+provider "azurerm" {
+  features {
+
+  }
+  subscription_id = var.subscription_id
+  tenant_id       = var.tenant_id
+}
+
+module "main" {
+  source = "./tutorial"
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "rg2"
+  location = var.location
+}
+
 resource "azurerm_storage_account" "sa-main" {
   resource_group_name      = azurerm_resource_group.rg.name
   name                     = var.storage-account-name
