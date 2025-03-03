@@ -19,7 +19,7 @@ provider "azurerm" {
 }
 
 module "main" {
-  source = "./tutorial"
+  source = "../tutorial"
 }
 
 resource "azurerm_resource_group" "rg" {
